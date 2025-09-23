@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1000" height="220" viewBox="0 0 1000 220" preserveAspectRatio="xMidYMid meet">
+  <!-- Background -->
+  <rect width="100%" height="100%" rx="8" ry="8" fill="#0b0f12"/>
+
+  <!-- Grid pattern of dark squares -->
+  <defs>
+    <pattern id="p" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+      <rect width="20" height="20" rx="3" ry="3" x="2" y="2" fill="#101418"/>
+    </pattern>
+
+    <!-- soft glow filter for snake -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3.5" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- draw the grid area -->
+  <rect x="20" y="30" width="960" height="120" fill="url(#p)" rx="6" ry="6" />
+
+  <!-- decorative right-side "active" blobs -->
+  <g transform="translate(720,30)">
+    <circle cx="200" cy="40" r="6" fill="#19a974" opacity="0.9">
+      <animate attributeName="r" values="6;10;6" dur="2.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2.2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="170" cy="70" r="5" fill="#0bb07b" opacity="0.8">
+      <animate attributeName="r" values="5;9;5" dur="2.5s" begin="0.3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="140" cy="30" r="4" fill="#14de9a" opacity="0.85">
+      <animate attributeName="r" values="4;8;4" dur="2s" begin="0.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- path for the snake to follow (left -> right) -->
+  <path id="snakePath" d="M40 90 H960" fill="none" stroke="transparent"/>
+
+  <!-- snake body: three magenta circles following the path -->
+  <g filter="url(#glow)">
+    <!-- tail -->
+    <circle cx="0" cy="0" r="6" fill="#7f1fb1" opacity="0.85">
+      <animateMotion dur="6s" repeatCount="indefinite" rotate="auto">
+        <mpath xlink:href="#snakePath" />
+      </animateMotion>
+      <animate attributeName="opacity" values="0.6;1;0.6" dur="6s" repeatCount="indefinite" />
+    </circle>
+
+    <!-- middle -->
+    <circle cx="0" cy="0" r="7" fill="#c13bd6" opacity="0.95">
+      <animateMotion dur="6s" begin="0.15s" repeatCount="indefinite" rotate="auto">
+        <mpath xlink:href="#snakePath" />
+      </animateMotion>
+      <animate attributeName="r" values="6;9;6" dur="1.6s" repeatCount="indefinite" />
+    </circle>
+
+    <!-- head -->
+    <circle cx="0" cy="0" r="8" fill="#f25bff" opacity="1">
+      <animateMotion dur="6s" begin="0.3s" repeatCount="indefinite" rotate="auto">
+        <mpath xlink:href="#snakePath" />
+      </animateMotion>
+      <!-- subtle bobbing for the head -->
+      <animate attributeName="cy" values="0;-4;0" dur="0.8s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- small reactive dots under snake to mimic steps -->
+  <g id="pings">
+    <circle cx="120" cy="120" r="3" fill="#0bb07b" opacity="0.0">
+      <animate attributeName="opacity" values="0;0.9;0" dur="1.2s" begin="1s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;8;3" dur="1.2s" begin="1s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="420" cy="120" r="3" fill="#0bb07b" opacity="0.0">
+      <animate attributeName="opacity" values="0;0.9;0" dur="1.5s" begin="2.4s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;9;3" dur="1.5s" begin="2.4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="760" cy="120" r="3" fill="#19a974" opacity="0.0">
+      <animate attributeName="opacity" values="0;0.95;0" dur="1.4s" begin="3.6s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="3;10;3" dur="1.4s" begin="3.6s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+
+  <!-- caption text (optional) -->
+  <text x="40" y="180" font-family="Inter, Arial, Helvetica, sans-serif" font-size="14" fill="#9aa3a8">
+    hi, i'm Hasan — here's a little snake for your profile 👾
+  </text>
+</svg>
