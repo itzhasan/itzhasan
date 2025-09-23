@@ -1,10 +1,9 @@
-# Hello.
+### Hello.
 
 I'm **Hasan**, I infuse software with a living, dynamic presence.
 
----
-
-<!-- embed the animated snake (must be in same repo root as README) -->
-<img src="./snake.svg" alt="animated snake" width="100%" />
-
----
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/contribution-snake-dark.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="./assets/contribution-snake.svg" />
+  <img alt="github-snake" src="./assets/contribution-snake.svg" />
+</picture>
