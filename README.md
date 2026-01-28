@@ -1,6 +1,6 @@
 ### Hello.
 
-I'm **Hasan**, I infuse software with a living, dynamic presence.
+I'm **Hasan**, I infuse software with a living, dynamic presence .
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/contribution-snake-dark.svg" />
